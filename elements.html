@@ -1,0 +1,139 @@
+<!DOCTYPE HTML>
+<!--
+    Massively by HTML5 UP
+    html5up.net | @ajlkn
+    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+    <head>
+        <title>Installing dbt locally</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    </head>
+    <body class="is-preload">
+
+        <!-- Wrapper -->
+            <div id="wrapper">
+
+                <!-- Header -->
+                    <header id="header">
+                        <a href="index.html" class="logo">Home</a>
+                    </header>
+
+                <!-- Nav -->
+                    <nav id="nav">
+                        <ul class="links">
+                            <li><a href="index.html">This is Massively</a></li>
+                            <li><a href="generic.html">Generic Page</a></li>
+                            <li class="active"><a href="elements.html">Elements Reference</a></li>
+                        </ul>
+                        <ul class="icons">
+                            <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+                            <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+                            <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+                            <li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+                        </ul>
+                    </nav>
+
+                <!-- Main -->
+                    <div id="main">
+
+                        <!-- Post -->
+                            <section class="post">
+                                <header class="major">
+                                    <h1>INSTALLING DBT LOCALLY<br />
+                                    </h1> <a href="elements"><img src="images/dbt.png" width=280 height=230 alt="" /></a>
+                                </header>
+
+                                <!-- Text stuff -->
+                                    <h2>How to install dbt locally on Windows</h2>
+                                    <p>The way that data models are transformed has been revolutionized over the past few years and a tool that has been at the forefront of this change is 
+                                        <b>dbt</b> (data build tool). There are currently a handful of guides on how to install this tool, however most of them lack the necessary depth to 
+                                        cover all aspects of the process, making it hard for people who are new in data to follow. </p>
+                                        
+                                        <p>This article aims to walk you through each single step of successfully installing this tool in your virtual environment and will build upon 
+                                            <a href='https://docs.getdbt.com/docs/get-started/getting-started-dbt-core'> dbt core's installation guide</a>. There are multiple adapters 
+                                            available depending on the data warehouse that you use, however we will leverage <b>PostgreSQL</b>, a free and open source relational database management system <b>(RDBMS)</b>,
+                                            which you will install in your local machine. Therefore, you can create and work on your own small database without the need to create any cloud account. 
+                                            This could be especially useful for people who just want to get hands-on experience with dbt and are in their first steps of their data journey or for those who want to further 
+                                            practice their data modelling skills.</p>
+                                        
+                                        <h3>A few callouts:</h3>
+                                        <div class="row">
+    
+                                            </div>
+                                            <div class="col-6 col-12-small">
+    
+                                                <ol>
+                                                    <li>This example was done on a Windows machine.</li>
+                                                    <li>This approach is tailored to people new in dbt and does not follow the Docker installation process but rather pip.</li>
+                                                    <li>At the time of writing, the latest dbt version is 1.3.</li>
+                                                    <li>This example was carried out using the CLI and not dbt cloud.</li>
+                                                    <li>Prerequisite: A code editor. I personally use <a href='https://code.visualstudio.com/'><u>VS Code</u></a>. </li>
+                                                </ol>
+
+
+                                        <h2>Install Postgres</h2>
+                                        <p>In this example we will download and use postgres locally, one of the most widely used RDBMS. Firstly, download 
+                                            <a href='https://www.postgresql.org/download/'><u>postgres</u></a>. Choose your operating system and once the download is complete proceed by installing it. 
+                                            Create your credentials and I would also strongly recommend downloading a GUI such as <a href="https://dbeaver.io/"> <u>DBeaver</u>
+                                            </a>to execute your queries.</p>
+
+                                        <h2>Install Python and PIP</h2>
+                                        <p>The next step is to install Python and PIP. Before proceeding, check which are dbt-core's current compatible Python versions on dbt's 
+                                            <a href='https://docs.getdbt.com/faqs/core/install-python-compatibility'> <u>website</u></a>. Then head to https://www.python.org/downloads/ and download 
+                                            the latest compatible Python version. Once the installation starts, make sure to select add python to PATH as well as to environment variables.</p>
+
+                                        <h2>Install dbt </h2>
+                                        <p>The last thing to be installed is dbt and specifically the postgres adapter. Execute the following command in your terminal:<br /><br />
+                                        <code>$ pip install dbt-postgres</code><br /><br />
+                                            Installing dbt will take a couple of minutes. Once the installation is complete, make sure that it has been installed correctly by running the following command, 
+                                            which will print out the dbt version in your local machine. <br /><br />
+                                        <code>$ dbt --version</code></p>
+                                        
+                                        <h2>Configuring dbt </h2>
+                                        <p>A new folder, <i>.dbt</i>, should have been created outside of the dbt project containing a <i>profiles.yml</i> file. Dbt uses profiles to connect to the database, therefore
+                                        it is of the utmost importance to configure it with the correct credentials. Open the file and update each respective field and use the credentials used
+                                        when setting up PostgreSQL. </p>
+                                            <figure>
+                                                <img src="images/profiles.png" width=260 height=320>
+                                              </figure>
+                                            <figcaption><b>dbt profiles.yml example</b></figcaption>
+                                        <p> 
+                                        
+                                        </p>
+                                        To ensure that a connection can be established, execute the following command in the terminal:</div>
+                                        <code>$ dbt debug</code></p>
+                                        If the configuration was set up correctly, executing the dbt debug command should return something like this:
+                                        <figure>
+                                            <img src="images/dbt_debug.png" width=480 height=320>
+                                          </figure>
+                                    </header>
+                                    With dbt set up, you can start creating your own data models! In case you are looking for datasets to download and practice both your PostgreSQL
+                                    and data modelling skills, I would recommend downloading the <a href='https://www.postgresql.org/download/'><u>jaffle shop</u></a> repository,
+                                      which contains raw data that you can use to get started with dbt!</br> </br>
+
+                                    <h2>Final Words </h2>
+                                    This article shows how to install and configure dbt locally, by installing the postgres adapter via pip. Happy data modelling!
+                                    <hr />
+
+                <!-- Copyright -->
+                    <div id="copyright">
+                        <ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+                    </div>
+
+            </div>
+
+        <!-- Scripts -->
+            <script src="assets/js/jquery.min.js"></script>
+            <script src="assets/js/jquery.scrollex.min.js"></script>
+            <script src="assets/js/jquery.scrolly.min.js"></script>
+            <script src="assets/js/browser.min.js"></script>
+            <script src="assets/js/breakpoints.min.js"></script>
+            <script src="assets/js/util.js"></script>
+            <script src="assets/js/main.js"></script>
+
+    </body>
+</html>
